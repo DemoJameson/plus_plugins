@@ -65,15 +65,7 @@ internal class MethodCallHandlerImpl(
             version["sdkInt"] = Build.VERSION.SDK_INT
             build["version"] = version
             build["isLowRamDevice"] = activityManager.isLowRamDevice
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                build["serialNumber"] = try {
-                    Build.getSerial()
-                } catch (ex: SecurityException) {
-                    Build.UNKNOWN
-                }
-            } else {
-                build["serialNumber"] = Build.SERIAL
-            }
+            build["serialNumber"] = Build.UNKNOWN
 
             result.success(build)
         } else {
